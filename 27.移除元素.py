@@ -49,5 +49,19 @@ from typing import List
 
 
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        pass
+    @staticmethod
+    def removeElement(nums: List[int], val: int) -> int:
+        s = []
+        ans = len(nums)
+        for i, item in enumerate(nums):
+            if item == val:
+                s.append(i)
+                ans -= 1
+            elif len(s) != 0:
+                nums[s[0]] = item
+                s.pop(0)
+                s.append(i)
+        return ans
+
+
+print(Solution.removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))  # 输出：5, nums = [0,1,4,0,3]
